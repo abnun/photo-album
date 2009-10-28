@@ -1,0 +1,44 @@
+<plugin name='photo-album' version='0.1' grailsVersion='1.2-M3 &gt; *'>
+  <author>Your name</author>
+  <title>Plugin summary/headline</title>
+  <description>\
+Brief description of the plugin.
+</description>
+  <documentation>http://grails.org/plugin/photo-album</documentation>
+  <resources>
+    <resource>BuildConfig</resource>
+    <resource>Config</resource>
+    <resource>DataSource</resource>
+    <resource>UrlMappings</resource>
+    <resource>de.webmpuls.photo_album.AlbumController</resource>
+    <resource>de.webmpuls.photo_album.PictureController</resource>
+    <resource>de.webmpuls.photo_album.Album</resource>
+    <resource>de.webmpuls.photo_album.Picture</resource>
+    <resource>de.webmpuls.photo_album.PictureComment</resource>
+    <resource>de.webmpuls.photo_album.AlbumService</resource>
+    <resource>de.webmpuls.photo_album.PictureService</resource>
+    <resource>de.webmpuls.photo_album.MediaTagLib</resource>
+  </resources>
+  <dependencies>
+    <plugin name='jquery' version='1.3.2.4 &gt; *' />
+    <resolvers />
+    <dependency group='org.hibernate' name='hibernate-core' version='3.3.1.GA' conf='compile' transitive='true'>
+      <excludes group='*' name='ehcache' />
+      <excludes group='*' name='xml-apis' />
+      <excludes group='*' name='commons-logging' />
+    </dependency>
+    <dependency group='org.hibernate' name='hibernate-commons-annotations' version='3.3.0.ga' conf='compile' transitive='true'>
+      <excludes group='*' name='hibernate' />
+    </dependency>
+    <dependency group='antlr' name='antlr' version='2.7.6' conf='runtime' transitive='true' />
+    <dependency group='javassist' name='javassist' version='3.4.GA' conf='runtime' transitive='true' />
+    <dependency group='org.hibernate' name='hibernate-annotations' version='3.4.0.GA' conf='compile' transitive='true' />
+    <dependency group='org.hibernate' name='hibernate-ehcache' version='3.3.1.GA' conf='runtime' transitive='true'>
+      <excludes group='*' name='ehcache' />
+    </dependency>
+    <dependency group='dom4j' name='dom4j' version='1.6.1' conf='runtime' transitive='true'>
+      <excludes group='*' name='xml-apis' />
+    </dependency>
+  </dependencies>
+  <behavior />
+</plugin>
