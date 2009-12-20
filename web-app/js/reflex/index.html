@@ -1,0 +1,361 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Reflex.js (with IE 6/7 support)</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-language" content="en">
+	<link rel="bookmark" type="text/html" title="Reflex.js" href="http://www.netzgesta.de/reflex/">
+	<meta name="Author" lang="en" content="reflex.netzgesta.de - Christian Effenberger">
+	<meta name="Publisher" lang="en" content="www.netzgesta.de">
+	<meta name="Copyright" lang="en" content="www.netzgesta.de - Christian Effenberger">
+	<meta name="Generator" lang="en" content="Christian Effenberger">
+	<meta name="Description" lang="en" content="Reflex.js 1.3 allows you to add an cover flow effect (including reflection) to images on your webpages through unobtrusive javascript">
+	<meta name="Keywords" lang="en" content="reflex.js,images,tilt,3d,border,opacity,reflection,cover flow effect,unobtrusive javascript,Mozilla,Firefox,Opera,Safari">
+	<meta http-equiv="imagetoolbar" content="no">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<script type="text/javascript" src="reflex.js"></script>
+	<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css">
+a { color: blue; font-style:italic; text-decoration:none; }
+tt {color: green;}
+b {color: #993333;}
+body { background: url(images/backgrnd.jpg) silver; color: black; font-family: Georgia,serif; line-height: 1.5; margin: 2em 2em;}
+h2 { line-height: 1; }
+.demo { float: left; padding: 10px; }
+.logo { position: relative; width: 480px; white-space: nowrap;}
+#guru { padding: 4px; width: 99%; height: auto; text-align: center; background-color: black; }
+#guru div { border: solid 3px red; padding: 4px; font-family: monospace; font-size: 1.25em; width: auto; height: auto; color: red; text-align: center; text-decoration: blink; }
+#header { margin-bottom: 0; font-weight: normal; font-style: italic; color: gray; }
+.bookmarks { white-space: nowrap; width: 98%; margin: 0; padding-top: 10px; border-top: 1px dotted gray;}
+</style>
+</head>
+<body><noscript><div id="guru" title="By this you can recognize the Amiga fan!"><div><strong>Guru Meditation</strong> - With deactivated JavaScript: Images stay unmodified!</div></div></noscript>
+<table summary="">
+<tr><td valign="top" style="padding-top: 0.5em">
+<div class="logo">
+<img src="images/apple.jpg" width="100" class="reflex idistance4 iopacity50" style="margin-left: -10px" alt="" />
+<img src="images/day.jpg" width="100" class="reflex itiltright idistance4 iopacity50" style="margin-left: -5px" alt="" />
+<img src="images/keeps.jpg" width="100" class="reflex itiltnone idistance4 iopacity50" style="margin: 0 0px 0 -0px" alt="" />
+<img src="images/doctor.jpg" width="100" class="reflex idistance4 iopacity50" alt="" style="" />
+<img src="images/away.jpg" width="100" class="reflex itiltleft idistance4 iopacity50" style="margin: 0 -10px 0 -5px" alt="" />
+</div>
+</td>
+<td style="padding: 0 0 0 15px; margin: 0; line-height: 1.5; font-style: italic;">
+<p><strong>Reflex.js 1.3</strong> allows you to add a Cover Flow<sup>&trade;</sup> effect (including reflection) to images on your webpages. <small><i>*Cover Flow is a trademark of Apple Inc.</i></small>. It uses unobtrusive javascript to keep your code clean.</p>
+<p>It works in all the major browsers - Mozilla Firefox 1.5+, Opera 9+, Safari and IE6+. On older browsers, it'll degrade and your visitors won't notice a thing.</p>
+<p><small><a href="http://lab.netzgesta.de/" title="showcase">CVI-lab</a>: Get a fast impression of the effects and their illustration qualities.</small></p>
+</td></tr>
+</table>
+
+<h2>Demonstration</h2>
+
+<p style="clear: left">Shows some of the things "reflex.js" does.<small><br><br>First 3 images with class "<tt>reflex</tt>" only, last 3 with "<tt>idistance?? iheight?? iopacity?? iborder? icolor??????</tt>" ...</small></p>
+<div class="demo"><img src="images/test.jpg" width="200" class="reflex itiltright" alt="" /></div>
+<div class="demo"><img src="images/test.jpg" width="200" class="reflex" alt="" /></div>
+<div class="demo"><img src="images/test.jpg" width="200" class="reflex" alt="" /></div>
+<p style="clear: left;"></p>
+<div class="demo"><a href="images/left.jpg"><img src="images/left.jpg" width="200" class="reflex iopacity50" alt="" /></a><small><br>"<tt>reflex iopacity50</tt>"</small></div>
+<div class="demo"><a href="images/none.jpg"><img src="images/none.jpg" width="200" class="reflex iopacity75" alt="" /></a><small><br>"<tt>reflex iopacity75</tt>"</small></div>
+<div class="demo"><a href="images/right.jpg"><img src="images/right.jpg" width="200" class="reflex iopacity25" alt="" /></a><small><br>"<tt>reflex iopacity25</tt>"</small></div>
+<p style="clear: left;"></p>
+<div class="demo"><img src="images/example.jpg" width="200" class="reflex idistance16 iborder2 iheight24" onClick="alert('Image dimension '+this.width+'x'+this.height);" title="onClick event" alt="" /></div>
+<div class="demo"><img src="images/example.jpg" width="200" class="reflex idistance0 iborder8 iheight40 icolorffffff" onClick="alert('ALT=\''+this.alt+'\'');" alt="landscape" /></div>
+<div class="demo"><img src="images/example.jpg" width="200" class="reflex idistance8 iborder1 iheight32 icolor0070a4" onClick="alert('TITLE=\''+this.title+'\'');" title="beautiful landscape" alt="" /></div>
+<p style="clear: left;"><small><em>Images used are copyrighted and are used for demonstration only.</em></small></p>
+
+<h2>Setting Up</h2>
+
+<p>Download "reflex.js" and include it into your webpage.</p>
+
+<code>
+&lt;script type="text/javascript" src="<tt>reflex.js</tt>"&gt;&lt;/script&gt;
+</code>
+
+<h2>Using It</h2>
+
+<p>To get the effect just add a class="<tt>reflex</tt>" to the image <em>(minimum dimension: 32x32)</em>.
+<small><br>The needed vertical space of the canvas element will grow by the height of the reflection, plus the height of the distance.</small>
+</p>
+
+<h2>Classes</h2>
+
+<ul>
+<li>Initialisation class "<tt>reflex</tt>"</li>
+<li><small><em>vary the reflection by adding idistance followed by the desired <b>height</b> in pixel:</em></small><br>
+Reflection distance class "<tt>idistance</tt>" - min=0 max=100 default=0</li>
+<li><small><em>vary the reflection by adding iheight followed by the desired <b>height</b> in percent:</em></small><br>
+Reflection height class "<tt>iheight</tt>" - min=10 max=100 default=33</li>
+<li><small><em>vary the reflection by adding iopacity followed by the desired <b>opacity</b> in percent:</em></small><br>
+Reflection opacity class "<tt>iopacity</tt>" - min=0 max=100 default=33</li>
+<li><small><em>vary the border by adding iborder followed by the desired <b>wide</b> in pixel:</em></small><br>
+Border wide class "<tt>iborder</tt>" - min=0 max=100 default=0</li>
+<li><small><em>vary the border by adding icolor followed by the desired <b>color</b> as hex:</em></small><br>
+Border color class "<tt>icolor</tt>" - min=000000 max=ffffff default=f0f4ff</li>
+<li><small><em>vary the 3D Z-Tilt direction by adding one of the following:</em></small><br>
+Z-Tilt direction class "<tt>itiltright</tt>" or "<tt>itiltnone</tt>" or "<tt>itiltleft</tt>"<br>
+by default "reflex.js" cycles through [right|none|left].</li>
+</ul>
+
+<h2>Scripting lib</h2>
+
+<p>If you want flexibility, use "<b>cvi_reflex_lib.js</b>" instead of "<b>reflex.js</b>". 
+You can make your images respond to user actions (e.g. changing one or more options when the image is hovered over).</p>
+<dl>
+	<dt><strong>Set</strong> defaults using Javascript</dt>
+	<dd>
+		<code>
+		cvi_reflex.defaultTilt = 'none'; <tt>//STR  'n|l|r'-'none|left|right'</tt><br>
+		cvi_reflex.defaultHeight = 33; <tt>//INT  10-100 (%)</tt><br>
+		cvi_reflex.defaultDistance = 0; <tt>//INT  0-100 (px)</tt><br>
+		cvi_reflex.defaultTransparency = 50; <tt>//INT  1-100 (%)</tt><br>
+		cvi_reflex.defaultBorder = 0; <tt>//INT  0-20 (px)</tt><br>
+		cvi_reflex.defaultColor = '#ffffff'; <tt>//STR '#000000'-'#ffffff'</tt><br>
+		cvi_reflex.defaultBoxmode = false; <tt>//BOOLEAN</tt><br>
+		</code>
+		<strong>If</strong> <b>cvi_filter_lib.js</b> is loaded also...<br>
+		<code>
+		cvi_reflex.defaultFilter = null; <tt>//OBJ  [{f='grayscale'},{f='emboss', s:1}...]</tt>
+		</code>
+  		<p></p>
+	</dd>
+	<dt><strong>Add</strong> images using Javascript</dt>
+  	<dd>
+  		<code>cvi_reflex.add(<tt>image</tt>, <tt>options</tt>);</code><br><small>
+		<tt>image</tt> should be an image element: document.getElementById(<b>"myimg"</b>)<br>
+		<tt>options</tt> can contain one or more values: {<tt>tilt</tt>: <b>value</b>, <tt>height</tt>: <b>value</b>, <tt>distance</tt>: <b>value</b>, <tt>transparency</tt>: <b>value</b>, <tt>border</tt>: <b>value</b>, <tt>color</tt>: <b>value</b>, <tt>boxmode</tt>: <b>value</b>, <tt>filter</tt>: <b>value</b>}</small>
+		<dl><dt>Examples:</dt>
+		<dd>
+			<code>
+			cvi_reflex.add(document.getElementById(<b>"myimg"</b>), { <tt>height</tt>: <b>25</b>, <tt>distance</tt>: <b>10</b> });<br>
+			&lt;img onLoad="cvi_reflex.add(<b>this</b>, { <tt>height</tt>: <b>25</b>, <tt>distance</tt>: <b>10</b> });" ...&gt;
+			</code>
+  		</dd></dl>
+  		<p></p>
+  	</dd>
+	<dt><strong>Modify</strong> images using Javascript</dt>
+  	<dd>
+  		<code>cvi_reflex.modify(<tt>image</tt>, <tt>options</tt>);</code><br>
+  		<small>If the image has already an effect but a <tt>option</tt> value has changed, the effect will be changed accordingly.</small><br>
+		<dl><dt>Example:</dt>
+		<dd>
+			<code>cvi_reflex.modify(document.getElementById(<b>"myimg"</b>), { <tt>tilt</tt>: <b>"left"</b> });</code>
+  		</dd></dl>
+		<p></p>
+  	</dd>
+	<dt><strong>Remove</strong> effect from an image using Javascript</dt>
+	<dd>
+		<code>cvi_reflex.remove(<tt>image</tt>);</code>
+  		<p></p>
+	</dd>
+</dl>
+
+<h2>Support libs</h2>
+<p>If you are using the more flexible "<b>cvi_reflex_lib.js</b>" instead of "<b>reflex.js</b>", 
+you'll get access to additional features by the following support libraries <em>(part of distribution)</em>:</p>
+<ul>
+<li><b>cvi_filter_lib.js</b> supports image filtering capabilities. <small>[<i><a class="lk" title="Filter capability WYSIWYG-Editor" href="http://lab.netzgesta.de/">WYSIWYG-Editor</a></i>]</small><br />
+<small><i>Provides image filter capability for Canvas (only if getImageData/setImageData is supported)</i></small>.<br />
+<br />
+<code>filter : [{<tt>#1 filter options</tt>},{<tt>#2 filter options</tt>}...];</code>
+<dt><code><tt>options</tt> &nbsp; e.g. {<b>f</b>: '<tt>contrast</tt>', <b>s</b>: <tt>1.5</tt>, ...}</code></dt>
+<dd>
+	<code><b>f</b> == STRING <b>filter name</b> e.g. "invert" Default: <tt>null</tt> <em>(required)</em><pre>
+     "<tt>invert</tt>" Reverses all colors of the image
+     "<tt>invertalpha</tt>" Reverses the transparency of the image
+     "<tt>grayscale</tt>" Converts the image into grayscale
+     "<tt>solarize</tt>" Solarizes the image by negating the colors
+     "<tt>sepia</tt>" Applies the well-known sepia coloring to the image
+     "<tt>threshold</tt>" Converts the image to black&white (s<1 == darker and s>1 == brighter)
+     "<tt>posterize</tt>" Posterizes the image by quantizing each channel to a limited number of levels
+     "<tt>tritone</tt>" Applies 3 colors for low|mid|high range according to the brightness of the image
+     "<tt>mixrgb</tt>" Mixes the RGB channels with the other two channels
+     "<tt>exposure</tt>" Simulates changing the exposure of the image
+     "<tt>gamma</tt>" Standard gamma correction (s<1 == darker and s>1 == brighter)
+     "<tt>brightness</tt>" Change brightness (s<1 == darker and s>1 == brighter)
+     "<tt>contrast</tt>" Change contrast (s<1 == lower and s>1 == higher)
+     "<tt>adjustrgba</tt>" Adjust the red & green & blue & alpha channel of the image (s == [r,g,b,a])
+     "<tt>adjusthsba</tt>" Adjust hue & saturation & brightness & alpha channel of the image (s == [h,s,b,a])
+     "<tt>adjustyuva</tt>" Adjust luminance & blue–yellow chrominance & red–cyan chrominance & alpha channel of the image (s == [y,u,v,a])
+     "<tt>colorkey</tt>" Set alpha to 0 if pixel color values are higher than min and lower than max rgb color
+     "<tt>chromakey</tt>" Set alpha to 0 if pixel hue & saturation & brightness matches
+     "<tt>smooth</tt>" Smoothes the image (result is similar to bluring)
+     "<tt>spinblur</tt>" Blurs by rotating the centered image
+     "<tt>zoomblur</tt>" Blurs by zooming the centered image
+     "<tt>motionblur</tt>" Blurs by moving the image to a defined direction
+     "<tt>outline</tt>" Creates grayscaled outline images by different operators (e.g. sobel, prewitt...).
+     "<tt>convolve</tt>" Use your own 3x3 matrix via option m=[[n,n,n],[n,n,n],[n,n,n]]
+     "<tt>blur</tt>" Bluring the image by (in build and extendable cvi_matrix object) convolution
+     "<tt>median</tt>" Smoothes grainy images by (in build and extendable cvi_matrix object) convolution
+     "<tt>sharpen</tt>" Makes image sharper by (in build and extendable cvi_matrix object) convolution
+     "<tt>sharper</tt>" Makes image even sharper by (in build and extendable cvi_matrix object) convolution
+     "<tt>bumplt</tt>" Embosses the image by (in build and extendable cvi_matrix object) convolution
+     "<tt>bumpbr</tt>" ... </pre></code>
+	<code><b>s</b> == FLOAT/OBJECT <b>multiplier(s)</b>  e.g. 0-255 Defaults to... <em>(optional)</em> </tt><pre>
+     <tt>1        </tt> if f=="<tt>zoomblur</tt>|<tt>spinblur</tt>" Distance (px)
+     <tt>1        </tt> if f=="<tt>smooth</tt>" Radius (px 1-10)
+     <tt>1        </tt> if f=="<tt>posterize</tt>" Number of levels (1-16)
+     <tt>1        </tt> if f=="<tt>threshold</tt>" Multiplier of 127 (0-2)
+     <tt>1        </tt> if f=="<tt>brightness</tt>|<tt>contrast</tt>|<tt>gamma</tt>|<tt>exposure</tt>" Multiplier of existing value (0-255)
+     <tt>[1,0]    </tt> if f=="<tt>motionblur</tt>" Distance (px) and angle (0-360)
+     <tt>[auto,0] </tt> if f=="<tt>convolve</tt>" or m!=null. Divisor of convolution result (-1==auto), 
+               useable for normalization and bias (0-255) for brightness addition
+     <tt>[1,0,    </tt> if f=="<tt>outline</tt>" Divisor of convolution result, bias (0-255) 
+     <tt>  'name']</tt> and operator ('sobel'|'scharr'|'prewitt'|'kirsh'|'roberts') 
+     <tt>[1,1,1,1]</tt> if f=="<tt>adjustrgba</tt>" red, green, blue, alpha. Multipliers of existing values (0-255)
+     <tt>[1,1,1,1]</tt> if f=="<tt>adjusthsba</tt>" hue, saturation, brightness, alpha. Multiply existing values (0-255)
+     <tt>[1,1,1,1]</tt> if f=="<tt>adjustyuva</tt>" luminance, blue–yellow chrominance, red–cyan chrominance, alpha. Multiply existing values (0-255)
+     <tt>[0,0,0,0,0]</tt>  f=="<tt>chromakey</tt>" hue (0-360) and hue tolerance, min saturation, min brightness, max brightness (0-100)
+     <tt>[[0,0,0],</tt> if f=="<tt>colorkey</tt>" equals rgb min and rgb max triplet (0-255)
+     <tt> [0,0,0]]</tt> 
+     <tt>[[1,1,1],</tt> if f=="<tt>mixrgb</tt>" Mix into r, g, b with...
+     <tt> [1,1,1]]</tt> ...bluegreen, redblue, greenred as triplets [0-255,0-255,0-255]
+     <tt>[[0,0,0],</tt> if f=="<tt>tritone</tt>" low|mid|high range colors as...
+     <tt> [0,0,0],</tt> ...rgb triplets [0-255,0-255,0-255]
+     <tt> [0,0,0]]</tt> </pre></code>
+	<code><b>m</b> == OBJECT <b>kernel matrix</b>  e.g. [[n,n,n],[n,n,n],[n,n,n]] Default: <tt>null</tt> <em>(optional)</em> </code><br />
+</dd>
+<p><br/></p>
+</li>
+<li><b>cvi_istack_lib.js</b> supports image stack capabilities. <small>[<i><a class="overlay lWOn lk" title="istack Example-Demo" href="istack.html">Example-Demo</a></i>]</small><br />
+<small><i>Provides fading image stacks for Images and CVI Effects</i></small>.
+
+<dl>
+	<dt>Set defaults</dt>
+  	<dd>
+		<code>cvi_istack.<b>defaultImagearray</b>&nbsp;= <tt>null</tt>; //OBJ e.g.  [{source:'image.jpg'}]</code><br />
+		<code>cvi_istack.<b>defaultMainwidth</b>&nbsp; = <tt>128</tt>; //INT 80-n (px width) </code><br />
+		<code>cvi_istack.<b>defaultMainheight</b> = <tt>128</tt>; //INT 80-n (px height)</code><br />
+		<code>cvi_istack.<b>defaultPlayframes</b> = <tt>20</tt>; //INT 1-100 equals frames to fade (* 30 milliseconds)</code><br />
+		<code>cvi_istack.<b>defaultPlaydelay</b>&nbsp; = <tt>5000</tt>; //INT 1000-n equals milliseconds (1/1000)</code><br />
+		<code>cvi_istack.<b>defaultLoadtimeout</b>= <tt>3000</tt>;	//INT 1000-n equals milliseconds (1/1000)</code><br />
+		<code>cvi_istack.<b>defaultNoiefade</b> &nbsp; = <tt>false</tt>;//BOOLEAN IE's Alpha filter produces rough edges</code><br />
+		<code>cvi_istack.<b>defaultPlayscript</b> = <tt>''</tt>; //STRING e.g. 'cvi_bevel'|'cvi_corner'|'cvi_curl'|'cvi_edge'|'cvi_glossy'|<br />
+		'cvi_glossy'|'cvi_reflex'|'cvi_slide'|'cvi_sphere'|'cvi_strip'</code><br />
+  		<p></p>
+		<em><small><b>imagearray</b> supports <tt>source</tt> <em>(required)</em> and <tt>options</tt> <em>(optional)</em>.</small></em>
+  		<p></p>
+	</dd>
+	<dt>Add stack</dt>
+  	<dd>
+  		<code>cvi_istack.add(<tt>element</tt>, <tt>options</tt>);</code><br />
+		<dl><dt><code><tt>element</tt>&nbsp; == div element</code></dt></dl>
+		<dl><dt><code><tt>options</tt> &nbsp;e.g. {<b>mainwidth</b>: <tt>128</tt>, <b>mainheight</b>: <tt>128</tt>, ...}</code></dt>
+		<dd>
+			<code><b>imagearray</b>&nbsp;== OBJ Default: <tt>null</tt></code><br />
+			<code><b>mainwidth</b>&nbsp; == INT <tt>32</tt> - <tt>n</tt> Default: <tt>128</tt></code><br />
+			<code><b>mainheight</b> == INT <tt>32</tt> - <tt>n</tt> Default: <tt>128</tt></code><br />
+			<code><b>playframes</b> == INT <tt>1</tt> - <tt>100</tt> Default: <tt>20</tt></code><br />
+			<code><b>playdelay</b>&nbsp; == INT <tt>1000</tt> - <tt>n</tt> Default: <tt>5000</tt></code><br />
+			<code><b>loadtimeout</b>== INT <tt>1000</tt> - <tt>n</tt> Default: <tt>3000</tt></code><br />
+			<code><b>noiefade</b> &nbsp; == BOL <tt>true</tt> or <tt>false</tt> Default: <tt>false</tt></code><br />
+			<code><b>playscript</b> == STR Default: <tt>''</tt></code><br />
+  		</dd></dl>
+		<dl><dt><em><small><b>Advices:</b> All images should have the same aspect ratio like the stack object.<br />
+		cvi_slide and cvi_strip creates generally 1:1 objects (using the larger dimension),<br />
+		cvi_sphere creates generally 1:1 objects (using the smaller dimension) and<br />
+		cvi_reflex creates objects with additional height (for the reflection).</small></em><br />
+		<em><small><b>Hint:</b> By adding a stack to a div element, the former content of the element will be overwritten.</small></em></dt></dl>
+  		<p></p>
+  	</dd>
+	<dt>Get some informations</dt>
+	<dd>
+		<code><tt>FLOAT</tt> &nbsp;= cvi_istack.version;</code><br />
+		<code><tt>STRING</tt> = cvi_istack.released;</code>
+  		<p></p>
+	</dd>
+	<dt>Play stack</dt>
+	<dd>
+		<code>cvi_istack.play(<tt>element</tt>);</code>
+  		<p></p>
+	</dd>
+	<dt>Pause stack</dt>
+	<dd>
+		<code>cvi_istack.pause(<tt>element</tt>);</code>
+  		<p></p>
+	</dd>
+	<dt>Remove stack</dt>
+	<dd>
+		<code>cvi_istack.remove(<tt>element</tt>);</code>
+  		<p></p>
+	</dd>
+	<dt>Example</dt>
+	<dd>
+  		<pre>
+&lt;script type="text/javascript"&gt;
+&lt;!--
+	var photos = new Array();
+	photos = [
+		{source:'images/fire.jpg', options:'{tilt:"l",text:"fire"}' },
+		{source:'images/jeans.jpg', options:'{tilt:"r",text:"jeans"}' },
+		{source:'images/rose.jpg', options:'{tilt:"l",text:"rose"}' },
+		{source:'images/swirl.jpg', options:'{tilt:"r",text:"swirl"}' },
+		{source:'images/fruits.jpg', options:'{tilt:"l",text:"fruits"}' },
+		{source:'images/heart.jpg' }
+	];
+	
+	function init_ImageStack() {
+		cvi_glossy.defaultPreserve=true;
+		cvi_glossy.defaultTilt='left';
+		cvi_glossy.defaultFontattr= [100,100,100];
+		cvi_istack.add(document.getElementById('wrapper_div'),{
+			imagearray: photos,
+			mainwidth: 200,
+			mainheight: 200,
+			playdelay: 3000,
+			playscript: 'cvi_glossy',
+			noiefade: true
+		});
+	}
+	
+	if(window.attachEvent) {
+		window.attachEvent("onload", init_ImageStack);
+	}else {
+		window.addEventListener("load", init_ImageStack, false);
+	}
+--&gt;
+&lt;/script&gt;
+  		</pre>
+	</dd>
+</dl>
+</li>
+</ul>
+
+<h2>Why use Javascript Reflex Image?</h2>
+
+<ul>
+<li>Fast and easy to implement. Just add class="<tt><?=$theme ?></tt>" to the image and your good to go.</li>
+<li>Don't need to spend time in an image editor creating an Cover Flow<sup>&trade;</sup> image effect.<br>
+<small><i>*Cover Flow is a trademark of Apple Inc.</i></small>.</li>
+<li>Works really well with forum avatars. Doesn't require additional server work.</li>
+<li>It's dead easy to change the attributes of the images.</li>
+<li>Free of charge use on non-commercial and private web sites.</li>
+</ul>
+
+<p>In older browsers, the script degrades and your visitors won't notice a thing.</p>
+
+<h2>Restrictions</h2>
+
+<p>Opera do not support printing of canvas.</p>
+
+<h2>History</h2>
+
+Version 1.3<ul><li>Extended distribution. Added the support libs "<b>cvi_filter_lib.js</b>" and "<b>cvi_istack_lib.js</b>"</li></ul>
+Version 1.2<ul><li>Added scriptable lib version <b>cvi_reflex_lib.js</b></li></ul>
+Version 1.1<ul><li>Added IE support for <tt>itiltleft</tt> and <tt>itiltright</tt></li></ul>
+Version 1.0<ul><li>Initial Release</li><li>Added support for Internet Explorer 6/7<br>(<tt>itiltleft</tt> and <tt>itiltright</tt> is still missing)</li></ul>
+
+<h2>Credits</h2>
+
+<p>The inspiration for the script came from apples <a href="http://www.apple.com/macosx/leopard/features/finder.html">Cover Flow</a><sup>&trade;</sup>.</p>
+
+<h2>License</h2>
+
+<p>Reflex.js is distributed under this <a href="LICENSE.txt">LICENSE</a>. License permits free of charge use on non-commercial and private web sites only. There are also <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#099;&#118;&#105;&#064;&#110;&#101;&#116;&#122;&#103;&#101;&#115;&#116;&#097;&#046;&#100;&#101;">Commercial Software Licenses</a> available.</p>
+
+<p><strong>Images used are copyrighted and are used for demonstration only.</strong></p>
+
+<p><a href="http://cvi.netzgesta.de/">cvi.netzgesta.de</a>&nbsp;&nbsp;also visit&nbsp;&nbsp;<a href="http://lab.netzgesta.de/">CVI-lab</a>, <a href="http://s5.netzgesta.de/">S5 Reloaded</a> and <a href="http://ajaxfilmdb.sourceforge.net/">AJAX-FilmDB</a></p>
+
+</body>
+</html>

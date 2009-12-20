@@ -49,6 +49,16 @@ environments {
 
 }
 
+// show all options to alter pictures
+photo_album.picture.show.all.options = true
+photo_album.picture.show.option.rotate = true
+photo_album.picture.show.option.grayscale = true
+photo_album.picture.show.option.sepia = true
+photo_album.picture.show.option.negation = true
+photo_album.picture.show.option.reduce.red.eyes = true
+photo_album.picture.show.option.reset = true
+photo_album.picture.show.option.crop = true
+
 // log4j configuration
 log4j = {
     // Example of changing the log pattern for the default console
@@ -85,7 +95,8 @@ log4j = {
 
     warn   'org.mortbay.log'
 
-	debug	'grails.app'
+	debug	'grails.app',
+			'de.webmpuls'
 }
 
 

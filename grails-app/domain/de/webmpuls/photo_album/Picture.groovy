@@ -4,9 +4,9 @@ import de.webmpuls.photo_album.util.MediaUtils
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import java.text.SimpleDateFormat
 
-class Picture
-{
-	static transients = ['URL', 'thumbNailURL', 'bigURL', 'tempURL', 'exists']
+class Picture {
+
+	static transients = ['URL', 'thumbNailURL', 'bigURL', 'tempURL', 'permURL', 'exists']
 	
 	static belongsTo = [album: Album]
 
@@ -16,15 +16,13 @@ class Picture
 	String caption
 	boolean coverPicture = false
 
-	static mapping =
-	{
+	static mapping = {
 		sort("dateCreated")
 		order("desc")
 		cache(true)
 	}
 
-    static constraints =
-	{
+    static constraints = {
 		baseName()
 		coverPicture()
 		caption(nullable: true, blank: true)
@@ -33,30 +31,30 @@ class Picture
 		thumbNailURL(display: false)
 		bigURL(display: false)
 		tempURL(display: false)
+		permURL(display: false)
     }
 
-	public String getURL()
-	{
+	public String getURL() {
 		return "${MediaUtils.getBaseName(baseName)}${MediaUtils.NORMAL}${MediaUtils.getExtension(baseName)}"
 	}
 
-	public String getBigURL()
-	{
+	public String getBigURL() {
 		return "${MediaUtils.getBaseName(baseName)}${MediaUtils.BIG}${MediaUtils.getExtension(baseName)}"
 	}
 
-	public String getThumbNailURL()
-	{
+	public String getThumbNailURL() {
 		return "${MediaUtils.getBaseName(baseName)}${MediaUtils.THUMBNAIL}${MediaUtils.getExtension(baseName)}"
 	}
 
-	public String getTempURL()
-	{
+	public String getPermURL() {
+		return "${MediaUtils.getBaseName(baseName)}${MediaUtils.PERM}${MediaUtils.getExtension(baseName)}"
+	}
+
+	public String getTempURL() {
 		return "${MediaUtils.getBaseName(baseName)}${MediaUtils.TEMP}${MediaUtils.getExtension(baseName)}"
 	}
 
-	public boolean exists()
-	{
+	public boolean exists() {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyyy")
 		String albumDate = simpleDateFormat.format(album.dateCreated)
 
@@ -69,15 +67,15 @@ class Picture
 		boolean normalExists = ApplicationHolder.getApplication().getMainContext().getResource(tmpFilePathNormal).getFile().exists()
 		boolean thumbNailExists = ApplicationHolder.getApplication().getMainContext().getResource(tmpFilePathThumbNail).getFile().exists()
 		boolean exists = bigExists && normalExists && thumbNailExists
-		if(!exists)
-		{
-			println("File '${tmpFilePathNormal}' does${exists ? '' : ' not'} exist")
+		if(!exists) {
+			if(log.debugEnabled) {
+				log.debug("File '${tmpFilePathNormal}' does${exists ? '' : ' not'} exist")
+			}
 		}
 		return exists
 	}
 
-	public String toString()
-	{
+	public String toString() {
 		return baseName
 	}
 }

@@ -2,20 +2,21 @@ class PhotoAlbumGrailsPlugin {
     // the plugin version
     def version = "0.1"
     // the version or versions of Grails the plugin is designed for
-    def grailsVersion = "1.2-M3 > *"
+    def grailsVersion = "1.2-RC2 > *"
     // the other plugins this plugin depends on
     def dependsOn = [jquery:"1.3.2.4 > *"]
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
-            "grails-app/views/error.gsp"
+            "grails-app/views/error.gsp",
+			"web-app/uploads/Image/**"
     ]
 
     // TODO Fill in these fields
-    def author = "Your name"
+    def author = "Markus Mueller"
     def authorEmail = ""
     def title = "Plugin summary/headline"
     def description = '''\\
-Brief description of the plugin.
+A grails plugin with photo album functionality based on imagemagick. Note that imagemagick needs to be installed first in order to use this plugin!.
 '''
 
     // URL to the plugin's documentation

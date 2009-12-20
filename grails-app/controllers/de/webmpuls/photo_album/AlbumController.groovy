@@ -9,7 +9,7 @@ class AlbumController {
 	AlbumService albumService
 
     def index = {
-        redirect(action: "list", params: params)
+        redirect(action: "list_frontend", params: params)
     }
 
     def list = {
@@ -69,16 +69,14 @@ class AlbumController {
                 }
             }
 
-			String oldAlbumName = albumInstance.name
+			String oldAlbumName = albumInstance.toString()
 
 			albumInstance.properties = params
             if (!albumInstance.hasErrors() && albumInstance.save(flush: true)) {
 
-				if (params.name != oldAlbumName)
-				{
+				if (params.name != oldAlbumName) {
 					println("Trying to rename album directory")
-					if (!albumService.renameAlbumDirectory(albumInstance, params.name))
-					{
+					if (!albumService.renameAlbumDirectory(albumInstance, oldAlbumName)) {
 						flash.message = "${message(code: 'default.updated.message', args: [message(code: 'album.label', default: 'Album'), albumInstance.id])}"
 						render(view: "edit", model: [albumInstance: albumInstance])
 					}

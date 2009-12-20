@@ -10,12 +10,14 @@ import java.text.SimpleDateFormat
  * Date: 10.08.2009
  * Time: 12:26:36
  */
-class MediaUtils 
-{
-	public static final String TEMP = "-temp"
+class MediaUtils {
+
+	public static final String PERM = "-perm"
 	public static final String THUMBNAIL = "-thumbnail"
 	public static final String NORMAL = "-normal"
 	public static final String BIG = "-big"
+	public static final String TEMP = "-temp"
+	public static final String CROP = "-crop"
 	public static final String SUFFIX = ".jpg"
 
 	public static final String DEFAULT_FOLDER = "album"
@@ -24,51 +26,42 @@ class MediaUtils
 
 	private static Log log = LogFactory.getLog(MediaUtils.class);
 
-	public static String getBaseName(String fileName)
-	{
+	public static String getBaseName(String fileName) {
 		String baseName = null
-		if (fileName && fileName.indexOf(".") != -1)
-		{
+		if (fileName && fileName.indexOf(".") != -1) {
 			baseName = fileName.substring(0, fileName.lastIndexOf("."))
 		}
 
-		if (log.debugEnabled)
-		{
+		if (log.debugEnabled) {
 			log.debug("Basename is: '$baseName'")
 		}
 
 		return baseName;
 	}
 
-	public static String getExtension(String fileName)
-	{
+	public static String getExtension(String fileName) {
 		String extension = SUFFIX
-		if (fileName && fileName.indexOf(".") != -1)
-		{
+		if (fileName && fileName.indexOf(".") != -1) {
 			extension = fileName.substring(fileName.lastIndexOf("."), fileName.size())
 		}
 
-		if (log.debugEnabled)
-		{
+		if (log.debugEnabled) {
 			log.debug("File extension is: '$extension'")
 		}
 
 		return extension;
 	}
 
-	private static void printSysAndEnvVariables()
-	{
+	public static void printSysAndEnvVariables() {
 		if(log.debugEnabled)
 		{
 			log.debug("OS -> ${System.getProperty("os.name")}")
 
-			if (GrailsUtil.environment == "development" && !System.getProperty("os.name").contains("Mac"))
-			{
+			if (GrailsUtil.environment == "development" && !System.getProperty("os.name").contains("Mac")) {
 				log.debug("PATH -> ${System.getenv().get("Path")}")
 				log.debug("USER -> ${System.getenv().get("USERNAME")}")
 			}
-			else
-			{
+			else {
 				log.debug("PATH -> ${System.getenv().get("PATH")}")
 				log.debug("USER -> ${System.getenv().get("USER")}")
 				log.debug("SHELL -> ${System.getenv().get("SHELL")}")
@@ -76,46 +69,37 @@ class MediaUtils
 		}
 	}
 
-	public static String formatDateForDisk(Date date)
-	{
+	public static String formatDateForDisk(Date date) {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyyy")
 
 		return simpleDateFormat.format(date)
 	}
 
-	public static void copyFile(String sourceFile, String target, boolean isTargetDirectory = false)
-	{
+	public static void copyFile(String sourceFile, String target, boolean isTargetDirectory = false) {
 		File checkFile = new File(sourceFile)
 
-		if(checkFile.exists())
-		{
+		if(checkFile.exists()) {
 			AntBuilder antBuilder = new AntBuilder()
-			if(isTargetDirectory)
-			{
+			if(isTargetDirectory) {
 				antBuilder.copy(file: sourceFile , toDir: target, overwrite: true, failonerror: true, verbose: true)
 			}
-			else
-			{
+			else {
 				antBuilder.copy(file: sourceFile , toFile: target, overwrite: true, failonerror: true, verbose: true)
 			}
 		}
-		else
-		{
+		else {
 			log.error("Source file '$checkFile' does not exist, cannot copy file!")
 		}
 	}
 
-	public static void moveDir(String sourceDir, String targetDir)
-	{
+	public static void moveDir(String sourceDir, String targetDir) {
 		File checkDir = new File(sourceDir)
 
-		if(checkDir.exists())
-		{
+		if(checkDir.exists()) {
 			AntBuilder antBuilder = new AntBuilder()
-			antBuilder.move(file: sourceDir , toDir: targetDir, overwrite: true, failonerror: true, verbose: true)
+			antBuilder.move(file: sourceDir , toFile: targetDir, overwrite: true, failonerror: true, verbose: true)
 		}
-		else
-		{
+		else {
 			log.error("Source dir '$checkDir' does not exist, cannot move!")
 		}
 	}

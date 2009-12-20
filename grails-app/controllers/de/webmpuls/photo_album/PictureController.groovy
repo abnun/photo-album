@@ -71,15 +71,14 @@ class PictureController {
                 }
             }
 
-			def oldAlbumId = pictureInstance.album.id
+			Album oldAlbum = pictureInstance.album
+			String oldAlbumId = oldAlbum.id
 
             pictureInstance.properties = params
             if (!pictureInstance.hasErrors() && pictureInstance.save(flush: true)) {
 
-				if (params.album.id != oldAlbumId)
-				{
-					if (!pictureService.movePictureToAlbumOnDisk(pictureInstance, params.album.id))
-					{
+				if (params.album.id != oldAlbumId) {
+					if (!pictureService.movePictureToAlbumOnDisk(pictureInstance, oldAlbum, params.album.id)) {
 						flash.message = "${message(code: 'default.updated.message', args: [message(code: 'picture.label', default: 'Picture'), pictureInstance.id])}"
 						render(view: "edit", model: [pictureInstance: pictureInstance])
 					}
@@ -117,28 +116,22 @@ class PictureController {
         }
     }
 
-	def uploadFotos =
-	{
-		if(log.debugEnabled)
-		{
+	def uploadPhotos = {
+		if(log.debugEnabled) {
 			log.debug("params -> $params")
 		}
 
-		if (request instanceof MultipartHttpServletRequest)
-		{
+		if (request instanceof MultipartHttpServletRequest) {
 			MultipartFile foto = request.getFile('fotos')
-			if (!foto.empty)
-			{
-				if(pictureService.uploadFotos(foto, params.folder, params.rotate, params['Filename'], params.album.id))
-				{
+			if (!foto.empty) {
+				if(pictureService.uploadPhotos(foto, params.folder, params.rotate, params['Filename'], params.album.id)) {
 					//response.sendError(200, 'Foto erfolgreich hochgeladen.');
 					response.setStatus(HttpServletResponse.SC_OK)
 					response.outputStream << "Foto erfolgreich hochgeladen."
 					response.outputStream.flush()
 					return false
 				}
-				else
-				{
+				else {
 					//response.sendError(500, 'Foto konnte nicht geladen werden.');
 					response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR)
 					response.outputStream << "Foto konnte nicht geladen werden."
@@ -146,15 +139,13 @@ class PictureController {
 					return false
 				}
 			}
-			else
-			{
+			else {
 				flash.message = 'file cannot be empty'
 				redirect(controller: 'album', action: 'show', id: params.album.id)
 				return false
 			}
 		}
-		else
-		{
+		else {
 			//response.sendError(500, 'Foto konnte nicht geladen werden.');
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR)
 			response.outputStream << "Foto konnte nicht geladen werden."
@@ -163,29 +154,113 @@ class PictureController {
 		}
 	}
 
-	def rotateFoto =
-	{
-		if(log.debugEnabled)
-		{
+	def alterPhoto = {
+		if(log.debugEnabled) {
 			log.debug("params -> $params")
 		}
 
-		if (params.id)
-		{
+		boolean isOk = false
+
+		if (params.id) {
 			Picture tmpPicture = Picture.get(params.id)
 
-			boolean isOk = pictureService.rotateFoto(tmpPicture, params.rotate)
-
-			if (isOk)
+			if(params.rotate)
 			{
-				flash.message = "Picture erfolgreich gedreht."
-				redirect(action: 'edit', id: tmpPicture.id)
+				isOk = pictureService.rotatePhoto(tmpPicture, params.rotate)
+			}
+
+			if(params.width && params.height && params.offsetHeight && params.offsetWidth)
+			{
+				boolean onlyCrop = params.onlyCrop ?: false
+
+				if(onlyCrop)
+				{
+					isOk = pictureService.cropFoto(tmpPicture, params.width, params.height, params.offsetHeight, params.offsetWidth)
+				}
+
+				if (params.monochrome)
+				{
+					isOk = pictureService.monochromeFoto(tmpPicture, params.width, params.height, params.offsetHeight, params.offsetWidth, onlyCrop)
+				}
+
+				if (params.sepia)
+				{
+					isOk = pictureService.sepiaFoto(tmpPicture, params.width, params.height, params.offsetHeight, params.offsetWidth, onlyCrop)
+				}
+
+				if (params.negate)
+				{
+					isOk = pictureService.negateFoto(tmpPicture, params.width, params.height, params.offsetHeight, params.offsetWidth, onlyCrop)
+				}
+
+				if (params.reduceRedEyes)
+				{
+					isOk = pictureService.reduceRedEyesOnFoto(tmpPicture, params.width, params.height, params.offsetHeight, params.offsetWidth, onlyCrop)
+				}
 			}
 			else
 			{
-				flash.message = "Picture konnte nicht gedreht werden."
+				if (params.monochrome)
+				{
+					isOk = pictureService.monochromeFoto(tmpPicture, "", "", "", "", true)
+				}
+
+				if (params.sepia)
+				{
+					isOk = pictureService.sepiaFoto(tmpPicture, "", "", "", "", true)
+				}
+
+				if (params.negate)
+				{
+					isOk = pictureService.negateFoto(tmpPicture, "", "", "", "", true)
+				}
+
+				// doesn't make sense
+				/*if (params.reduceRedEyes)
+				{
+					isOk = pictureService.reduceRedEyesOnFoto(tmpPicture, "", "", "", "", true)
+				}*/
+			}
+
+			if (isOk) {
+				flash.message = "Picture erfolgreich geändert."
+				redirect(action: 'edit', id: tmpPicture.id)
+			}
+			else {
+				flash.message = "Picture konnte nicht geändert werden."
 				redirect(action: 'edit', id: params.id, params: [rotate: params.rotate])
 			}
+		}
+		else {
+			flash.message = "Es wurden keine Einstellungen zum Ändern getroffen."
+			redirect(action: 'edit', id: params.id, params: [rotate: params.rotate])
+		}
+	}
+
+	def resetPhoto = {
+		if(log.debugEnabled) {
+			log.debug("params -> $params")
+		}
+
+		boolean isOk = false
+
+		if (params.id) {
+			Picture tmpPicture = Picture.get(params.id)
+
+			isOk = pictureService.resetPhoto(tmpPicture)
+
+		if (isOk) {
+				flash.message = "Picture erfolgreich zurückgesetzt."
+				redirect(action: 'edit', id: tmpPicture.id)
+			}
+			else {
+				flash.message = "Picture konnte nicht zurückgesetzt werden."
+				redirect(action: 'edit', id: params.id, params: [rotate: params.rotate])
+			}
+		}
+		else {
+			flash.message = "Es wurde keine Aktion angefordert."
+			redirect(action: 'edit', id: params.id, params: [rotate: params.rotate])
 		}
 	}
 }

@@ -60,11 +60,11 @@ td.errors select, td.errors input, td.errors textarea {
 /* Albums */
 
 div.thumbwrapper {
-	background: #EFEFFE none repeat scroll 0 0;
+	background: transparent none repeat scroll 0 0;
 	/*background: #F0EEE0 none repeat scroll 0 0;*/
-	border: 1px solid #AFAB8E;
+	/*border: 1px solid #AFAB8E;*/
 	float: left;
-	height: 200px;
+	height: 280px;
 	margin: 8px;
 	padding: 5px;
 	text-align: center;

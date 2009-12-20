@@ -1,8 +1,8 @@
 <plugin name='photo-album' version='0.1' grailsVersion='1.2-M3 &gt; *'>
-  <author>Your name</author>
+  <author>Markus Mueller</author>
   <title>Plugin summary/headline</title>
   <description>\
-Brief description of the plugin.
+A grails plugin with photo album functionality based on imagemagick. Note that imagemagick needs to be installed first in order to use this plugin!.
 </description>
   <documentation>http://grails.org/plugin/photo-album</documentation>
   <resources>
@@ -21,24 +21,9 @@ Brief description of the plugin.
   </resources>
   <dependencies>
     <plugin name='jquery' version='1.3.2.4 &gt; *' />
-    <resolvers />
-    <dependency group='org.hibernate' name='hibernate-core' version='3.3.1.GA' conf='compile' transitive='true'>
-      <excludes group='*' name='ehcache' />
-      <excludes group='*' name='xml-apis' />
-      <excludes group='*' name='commons-logging' />
-    </dependency>
-    <dependency group='org.hibernate' name='hibernate-commons-annotations' version='3.3.0.ga' conf='compile' transitive='true'>
-      <excludes group='*' name='hibernate' />
-    </dependency>
-    <dependency group='antlr' name='antlr' version='2.7.6' conf='runtime' transitive='true' />
-    <dependency group='javassist' name='javassist' version='3.4.GA' conf='runtime' transitive='true' />
-    <dependency group='org.hibernate' name='hibernate-annotations' version='3.4.0.GA' conf='compile' transitive='true' />
-    <dependency group='org.hibernate' name='hibernate-ehcache' version='3.3.1.GA' conf='runtime' transitive='true'>
-      <excludes group='*' name='ehcache' />
-    </dependency>
-    <dependency group='dom4j' name='dom4j' version='1.6.1' conf='runtime' transitive='true'>
-      <excludes group='*' name='xml-apis' />
-    </dependency>
+    <resolvers>
+      <resolver type='grailsPlugins' name='grailsPlugins' />
+    </resolvers>
   </dependencies>
   <behavior />
 </plugin>

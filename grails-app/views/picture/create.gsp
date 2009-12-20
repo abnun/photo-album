@@ -3,17 +3,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-		<link rel="stylesheet" href="${resource(dir: pluginContextPath + '/css', file: 'uploadify.css')}" />
-		<script type="text/javascript" src="${resource(dir: pluginContextPath + '/js/jquery', file: 'jquery-1.3.2.min.js')}"></script>
-		<script type="text/javascript" src="${resource(dir: pluginContextPath + '/js/uploadify', file: 'swfobject.js')}"></script>
-		<script type="text/javascript" src="${resource(dir: pluginContextPath + '/js/uploadify', file: 'jquery.uploadify.v2.1.0.min.js')}"></script>
+		<wm_photo_album:uploadify_resources />
 
 		<%
 		    Album tmpAlbum = Album.get(params.album?.id)
 
 			String albumDate = ""
-			if(tmpAlbum)
-			{
+			if(tmpAlbum) {
 				albumDate = formatDate(date: tmpAlbum.dateCreated, format: 'ddMMyyyy')
 			}
 
@@ -21,9 +17,9 @@
 		<jq:jquery>
 
 			$('#albumFotos').uploadify({
-				'uploader'  		: '${resource(dir: pluginContextPath + '/js/uploadify', file: 'uploadify.swf')}',
-				'script'    		: '${createLink(controller: 'picture', action: 'uploadFotos')}',
-				'cancelImg' 		: '${resource(dir: pluginContextPath + '/images', file: 'cancel.png')}',
+				'uploader'  		: '${resource(dir: '/js/uploadify', file: 'uploadify.swf')}',
+				'script'    		: '${createLink(controller: 'picture', action: 'uploadPhotos')}',
+				'cancelImg' 		: '${resource(dir: '/images', file: 'cancel.png')}',
 				'auto'      		: false,
 				'fileDataName'		: 'fotos',
 				'multi'				: true,

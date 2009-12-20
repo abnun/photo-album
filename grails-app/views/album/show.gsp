@@ -3,9 +3,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
+		<wm_photo_album:gallery_resources />
+		<wm_photo_album:image_instant_resources />
+		<wm_photo_album:image_reflex_resources />
         <title>Album '${albumInstance.name}'</title>
     </head>
     <body>
+		<div class="nav">
+			<span class="menuButton"><a class="home" href="${resource(dir: '')}">Home</a></span>
+		</div>
         <div class="body">
 			<div class="post">
 
@@ -35,24 +41,25 @@
 									<tr>
 								</g:if>
 								<td>
-									<div class="thumbwrapper highslide-gallery" style="margin: auto">
+									<div class="highslide-gallery" style="margin: auto">
 										<br />
+										<jq:jquery>
+											jQuery.preloadImages("${wm_photo_album.mediaPath(albumId: albumInstance.id)}${pictureInstance.getThumbNailURL()}", "${wm_photo_album.mediaPath(albumId: albumInstance.id)}${pictureInstance.getBigURL()}");
+										</jq:jquery>
 										<a class='highslide' href='${wm_photo_album.mediaPath(albumId: albumInstance.id)}${pictureInstance.getBigURL()}' onclick="return hs.expand(this, { captionText: '${pictureInstance.caption}' })">
-											<img src='${wm_photo_album.mediaPath(albumId: albumInstance.id)}${pictureInstance.getThumbNailURL()}' alt='${pictureInstance.baseName}'/>
+											<img class="instant ishadow50 itiltleft historical nocorner itxtalt itxtcol666666" src='${wm_photo_album.mediaPath(albumId: albumInstance.id)}${pictureInstance.getThumbNailURL()}' alt='${pictureInstance.caption}'/>
 										</a>
-										<jsec:isLoggedIn>
-											<g:form name="DeletePictureForm_${pictureInstance.id}" method="post" url="${createLink(controller: 'picture', action: 'delete', params: [id: pictureInstance.id, albumId: albumInstance.id])}"></g:form>
-											<p class="meta" style="text-align: center;">
-												<img src="${resource(dir: pluginContextPath + '/images/skin', file: 'database_delete.png')}" alt="Bild löschen"/>
-												<a href="javascript: void(0);" onclick="if(confirm('Wirklich löschen?')) { document.forms['DeletePictureForm_${pictureInstance.id}'].submit();}">
-													<span style="text-align: left;">löschen</span>
-												</a>
-												<img src="${resource(dir: pluginContextPath + '/images/skin', file: 'database_edit.png')}" alt="Bild ändern" />
-												<g:link controller="picture" action="edit" params="[id: pictureInstance.id, albumId: albumInstance.id]">
-													ändern
-												</g:link>
-											</p>
-										</jsec:isLoggedIn>
+										<g:form name="DeletePictureForm_${pictureInstance.id}" method="post" url="${createLink(controller: 'picture', action: 'delete', params: [id: pictureInstance.id, albumId: albumInstance.id])}"></g:form>
+										<p class="meta" style="text-align: center;">
+											<img src="${resource(dir: '/images/skin', file: 'database_delete.png')}" alt="Bild löschen"/>
+											<a href="javascript: void(0);" onclick="if(confirm('Wirklich löschen?')) { document.forms['DeletePictureForm_${pictureInstance.id}'].submit();}">
+												<span style="text-align: left;">löschen</span>
+											</a>
+											<img src="${resource(dir: '/images/skin', file: 'database_edit.png')}" alt="Bild ändern" />
+											<g:link controller="picture" action="edit" params="[id: pictureInstance.id, albumId: albumInstance.id]">
+												ändern
+											</g:link>
+										</p>
 									</div>
 								</td>
 								<g:if test="${i > 1 && i % 3 == 0}">
@@ -63,24 +70,20 @@
 					</table>
 					<br />
 					<br />
-					<jsec:isLoggedIn>
-						<img src="${resource(dir: pluginContextPath + '/images/skin', file: 'database_add.png')}" alt="Bilder hochladen" />
-						<g:link controller="picture" action="create" params="['album.id': albumInstance.id]">
-							Weitere Bilder hochladen
-						</g:link>
-					</jsec:isLoggedIn>
+					<img src="${resource(dir: '/images/skin', file: 'database_add.png')}" alt="Bilder hochladen" />
+					<g:link controller="picture" action="create" params="['album.id': albumInstance.id]">
+						Weitere Bilder hochladen
+					</g:link>
 				</g:if>
 				<g:else>
 					<br />
 					Es sind noch keine Bilder in diesem Album vorhanden ...
 					<br />
 					<br />
-					<jsec:isLoggedIn>
-						<img src="${resource(dir: pluginContextPath + '/images/skin', file: 'database_add.png')}" alt="Bilder hochladen" />
-						<g:link controller="picture" action="create" params="['album.id': albumInstance.id]">
-							Neue Bilder hochladen
-						</g:link>
-					</jsec:isLoggedIn>
+					<img src="${resource(dir: '/images/skin', file: 'database_add.png')}" alt="Bilder hochladen" />
+					<g:link controller="picture" action="create" params="['album.id': albumInstance.id]">
+						Neue Bilder hochladen
+					</g:link>
 				</g:else>
             </div>
         </div>

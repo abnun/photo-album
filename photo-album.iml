@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module relativePaths="true" type="GRAILS_MODULE" version="4">
   <component name="FacetManager">
-    <facet type="Grails" name="Grails">
-      <configuration />
+    <facet type="Spring" name="Spring">
+      <configuration>
+        <fileset id="Grails" name="Grails" removed="false">
+          <file>file://$MODULE_DIR$/web-app/WEB-INF/applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/web-app/WEB-INF/applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/web-app/WEB-INF/applicationContext.xml</file>
+        </fileset>
+      </configuration>
     </facet>
     <facet type="web" name="GrailsWeb">
       <configuration>
         <webroots>
           <root url="file://$MODULE_DIR$/web-app" relative="/" />
-          <root url="file://C:/Dokumente und Einstellungen/markus2.mueller/.grails/1.2-M3/projects/photo-album/plugins/jquery-1.3.2.4/web-app" relative="/" />
+          <root url="file://$MODULE_DIR$/web-app" relative="/" />
+          <root url="file://$MODULE_DIR$/../../../../../../../.grails/1.2.0.RC1/projects/photo-album/plugins/jquery-1.3.2.4/web-app" relative="/" />
+          <root url="file://$MODULE_DIR$/web-app" relative="/" />
+          <root url="file://$MODULE_DIR$/../../../../../../../.grails/1.2.0.RC2/projects/photo-album/plugins/jquery-1.3.2.4/web-app" relative="/" />
         </webroots>
         <sourceRoots />
         <building>
@@ -20,20 +29,16 @@
         </building>
       </configuration>
     </facet>
-    <facet type="Spring" name="Spring">
-      <configuration>
-        <fileset id="Grails" name="Grails" removed="false">
-          <file>file://$MODULE_DIR$/web-app/WEB-INF/applicationContext.xml</file>
-        </fileset>
-      </configuration>
+    <facet type="Grails" name="Grails">
+      <configuration />
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://C:/Dokumente und Einstellungen/markus2.mueller/.grails/1.2-M3/projects/photo-album/plugins">
-      <sourceFolder url="file://C:/Dokumente und Einstellungen/markus2.mueller/.grails/1.2-M3/projects/photo-album/plugins/jquery-1.3.2.4/grails-app/taglib" isTestSource="false" />
-      <sourceFolder url="file://C:/Dokumente und Einstellungen/markus2.mueller/.grails/1.2-M3/projects/photo-album/plugins/jquery-1.3.2.4/src/groovy" isTestSource="false" />
-      <sourceFolder url="file://C:/Dokumente und Einstellungen/markus2.mueller/.grails/1.2-M3/projects/photo-album/plugins/tomcat-1.2-M3/src/groovy" isTestSource="false" />
+    <content url="file://$MODULE_DIR$/../../../../../../../.grails/1.2.0.RC2/projects/photo-album/plugins">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../../../.grails/1.2.0.RC2/projects/photo-album/plugins/jquery-1.3.2.4/grails-app/taglib" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../../../.grails/1.2.0.RC2/projects/photo-album/plugins/jquery-1.3.2.4/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../../../.grails/1.2.0.RC2/projects/photo-album/plugins/tomcat-1.2.0.RC2/src/groovy" isTestSource="false" />
     </content>
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/grails-app/conf/hibernate" isTestSource="false" />
@@ -41,7 +46,6 @@
       <sourceFolder url="file://$MODULE_DIR$/grails-app/domain" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/grails-app/services" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/grails-app/taglib" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/scripts" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/groovy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/integration" isTestSource="true" />
@@ -49,19 +53,22 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Grails 1.2-M3" level="project" />
+    <orderEntry type="library" name="grails-1.2.0.RC2" level="application" />
     <orderEntry type="module-library">
       <library name="Grails User Library">
         <CLASSES>
           <root url="file://$MODULE_DIR$/lib" />
-          <root url="file://C:/Dokumente und Einstellungen/markus2.mueller/.grails/1.2-M3/projects/photo-album/plugins/tomcat-1.2-M3/lib" />
+          <root url="file://$MODULE_DIR$/../../../../../../../.grails/1.2.0.RC1/projects/photo-album/plugins/tomcat-1.2.0.RC1/lib" />
+          <root url="file://$MODULE_DIR$/../../../../../../../.grails/1.2.0.RC2/projects/photo-album/plugins/tomcat-1.2.0.RC2/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-        <jarDirectory url="file://C:/Dokumente und Einstellungen/markus2.mueller/.grails/1.2-M3/projects/photo-album/plugins/tomcat-1.2-M3/lib" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../../../../../../../.grails/1.2.0.RC1/projects/photo-album/plugins/tomcat-1.2.0.RC1/lib" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../../../../../../../.grails/1.2.0.RC2/projects/photo-album/plugins/tomcat-1.2.0.RC2/lib" recursive="false" />
         <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="module" module-name="photo-album-grailsPlugins" />
   </component>
 </module>
 
