@@ -1,4 +1,4 @@
-<plugin name='photo-album' version='0.1' grailsVersion='1.2-M3 &gt; *'>
+<plugin name='photo-album' version='0.1' grailsVersion='1.2-RC2 &gt; *'>
   <author>Markus Mueller</author>
   <title>Plugin summary/headline</title>
   <description>\
