@@ -8,13 +8,14 @@ class Picture {
 
 	static transients = ['URL', 'thumbNailURL', 'bigURL', 'tempURL', 'permURL', 'exists']
 	
-	static belongsTo = [album: Album]
+	static belongsTo = 'album'
 
 	Date dateCreated
 	
 	String baseName
 	String caption
 	boolean coverPicture = false
+	Album album
 
 	static mapping = {
 		sort("dateCreated")
@@ -33,6 +34,18 @@ class Picture {
 		tempURL(display: false)
 		permURL(display: false)
     }
+
+	static namedQueries =
+	{
+		withAlbumName
+		{
+			String name ->
+
+			Album tmpAlbum = Album.findByName(name)
+			eq('album', tmpAlbum)
+			cache(true)
+       	}
+	}
 
 	public String getURL() {
 		return "${MediaUtils.getBaseName(baseName)}${MediaUtils.NORMAL}${MediaUtils.getExtension(baseName)}"

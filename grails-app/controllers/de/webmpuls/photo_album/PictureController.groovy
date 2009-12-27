@@ -263,4 +263,14 @@ class PictureController {
 			redirect(action: 'edit', id: params.id, params: [rotate: params.rotate])
 		}
 	}
+
+	def test = {
+		if(params.name) {
+			return [name: params.name]
+		}
+		else {
+			redirect(uri: '/')
+			return false
+		}
+	}
 }

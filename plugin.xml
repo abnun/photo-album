@@ -24,11 +24,11 @@ A grails plugin with photo album functionality based on imagemagick. Note that i
     <resolvers>
       <resolver type='grailsPlugins' name='grailsPlugins' />
     </resolvers>
-    <dependency group='org.apache' name='ant-launcher' version='1.7.1' conf='runtime' transitive='true' />
-    <dependency group='org.apache' name='ant-trax' version='1.7.1' conf='runtime' transitive='true' />
-    <dependency group='org.apache' name='ant' version='1.7.1' conf='runtime' transitive='true' />
-    <dependency group='org.apache' name='ant-junit' version='1.7.1' conf='runtime' transitive='true' />
     <dependency group='org.apache' name='ant-nodeps' version='1.7.1' conf='runtime' transitive='true' />
+    <dependency group='org.apache' name='ant-junit' version='1.7.1' conf='runtime' transitive='true' />
+    <dependency group='org.apache' name='ant-trax' version='1.7.1' conf='runtime' transitive='true' />
+    <dependency group='org.apache' name='ant-launcher' version='1.7.1' conf='runtime' transitive='true' />
+    <dependency group='org.apache' name='ant' version='1.7.1' conf='runtime' transitive='true' />
   </dependencies>
   <behavior />
 </plugin>

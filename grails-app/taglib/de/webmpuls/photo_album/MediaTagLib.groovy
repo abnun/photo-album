@@ -73,8 +73,7 @@ class MediaTagLib {
     def static_resources = {
 		attrs ->
         if ((attrs.override != 'true') && !Boolean.valueOf(attrs.override)) {
-            out << "<link rel=\"stylesheet\" type=\"text/css\" href=\"${resource(dir: pluginContextPath + '/css', file: 'style.css')}\"/>\n"
-//			out << "<script type=\"text/javascript\" src=\"${resource(dir: pluginContextPath + '/js/jquery', file: 'jquery-1.3.2.min.js')}\"></script>\n"
+            out << "<link rel=\"stylesheet\" type=\"text/css\" href=\"${resource(dir: '/css', file: 'style.css', plugin: 'photo-album')}\"/>\n"
 			out << g.javascript(library: 'jquery')
         }
     }
@@ -85,15 +84,15 @@ class MediaTagLib {
     def gallery_resources = {
 		attrs ->
         if ((attrs.override != 'true') && !Boolean.valueOf(attrs.override)) {
-            out << "<script type=\"text/javascript\" src=\"${resource(dir: '/highslide', file: 'highslide-with-gallery.js')}\"></script>\n"
-            out << "<link rel=\"stylesheet\" type=\"text/css\" href=\"${resource(dir: '/highslide', file: 'highslide.css')}\" />\n"
+            out << "<script type=\"text/javascript\" src=\"${resource(dir: '/highslide', file: 'highslide-with-gallery.js', plugin: 'photo-album')}\"></script>\n"
+            out << "<link rel=\"stylesheet\" type=\"text/css\" href=\"${resource(dir: '/highslide', file: 'highslide.css', plugin: 'photo-album')}\" />\n"
             out << "<!--[if lt IE 7]>\n"
-            out << "<link rel=\"stylesheet\" type=\"text/css\" href=\"${resource(dir: '/highslide', file: 'highslide-ie6.css')}\" />\n"
+            out << "<link rel=\"stylesheet\" type=\"text/css\" href=\"${resource(dir: '/highslide', file: 'highslide-ie6.css', plugin: 'photo-album')}\" />\n"
             out << "<![endif]-->\n"
 			out << g.javascript() {
-				"hs.graphicsDir = '${resource(dir: '/highslide/graphics/')}';\n"
+				"hs.graphicsDir = '${resource(dir: '/highslide/graphics/', plugin: 'photo-album')}';\n"
 			}
-			out << "<script type=\"text/javascript\" src=\"${resource(dir: '/js/highslide', file: 'gallery.js')}\"></script>\n"
+			out << "<script type=\"text/javascript\" src=\"${resource(dir: '/js/highslide', file: 'gallery.js', plugin: 'photo-album')}\"></script>\n"
         }
     }
 
@@ -103,9 +102,9 @@ class MediaTagLib {
     def uploadify_resources = {
 		attrs ->
         if ((attrs.override != 'true') && !Boolean.valueOf(attrs.override)) {
-            out << "<link rel=\"stylesheet\" type=\"text/css\" href=\"${resource(dir: '/css/uploadify', file: 'uploadify.css')}\" />\n"
-            out << "<script type=\"text/javascript\" src=\"${resource(dir: '/js/uploadify', file: 'swfobject.js')}\"></script>\n"
-            out << "<script type=\"text/javascript\" src=\"${resource(dir: '/js/uploadify', file: 'jquery.uploadify.v2.1.0.min.js')}\"></script>\n"
+            out << "<link rel=\"stylesheet\" type=\"text/css\" href=\"${resource(dir: '/css/uploadify', file: 'uploadify.css', plugin: 'photo-album')}\" />\n"
+            out << "<script type=\"text/javascript\" src=\"${resource(dir: '/js/uploadify', file: 'swfobject.js', plugin: 'photo-album')}\"></script>\n"
+            out << "<script type=\"text/javascript\" src=\"${resource(dir: '/js/uploadify', file: 'jquery.uploadify.v2.1.0.min.js', plugin: 'photo-album')}\"></script>\n"
         }
     }
 
@@ -115,9 +114,9 @@ class MediaTagLib {
     def image_processing_resources = {
 		attrs ->
         if ((attrs.override != 'true') && !Boolean.valueOf(attrs.override)) {
-			out << "<link rel=\"stylesheet\" type=\"text/css\" href=\"${resource(dir: '/css/jcrop', file: 'jquery.Jcrop.css')}\" />\n"
-            out << "<script type=\"text/javascript\" src=\"${resource(dir: '/js/jcrop', file: 'jquery.Jcrop.js')}\"></script>\n"
-//            out << "<script type=\"text/javascript\" src=\"${resource(dir: '/js/jcrop', file: 'jquery.Jcrop.min.js')}\"></script>\n"
+			out << "<link rel=\"stylesheet\" type=\"text/css\" href=\"${resource(dir: '/css/jcrop', file: 'jquery.Jcrop.css', plugin: 'photo-album')}\" />\n"
+//            out << "<script type=\"text/javascript\" src=\"${resource(dir: '/js/jcrop', file: 'jquery.Jcrop.js')}\"></script>\n"
+            out << "<script type=\"text/javascript\" src=\"${resource(dir: '/js/jcrop', file: 'jquery.Jcrop.min.js', plugin: 'photo-album')}\"></script>\n"
         }
     }
 
@@ -127,8 +126,8 @@ class MediaTagLib {
     def image_instant_resources = {
 		attrs ->
         if ((attrs.override != 'true') && !Boolean.valueOf(attrs.override)) {
-            out << "<script type=\"text/javascript\" src=\"${resource(dir: '/js/instant', file: 'cvi_text_lib.js')}\"></script>\n"
-            out << "<script type=\"text/javascript\" src=\"${resource(dir: '/js/instant', file: 'instant.js')}\"></script>\n"
+            out << "<script type=\"text/javascript\" src=\"${resource(dir: '/js/instant', file: 'cvi_text_lib.js', plugin: 'photo-album')}\"></script>\n"
+            out << "<script type=\"text/javascript\" src=\"${resource(dir: '/js/instant', file: 'instant.js', plugin: 'photo-album')}\"></script>\n"
         }
     }
 
@@ -138,7 +137,7 @@ class MediaTagLib {
     def image_reflex_resources = {
 		attrs ->
         if ((attrs.override != 'true') && !Boolean.valueOf(attrs.override)) {
-            out << "<script type=\"text/javascript\" src=\"${resource(dir: '/js/reflex', file: 'reflex.js')}\"></script>\n"
+            out << "<script type=\"text/javascript\" src=\"${resource(dir: '/js/reflex', file: 'reflex.js', plugin: 'photo-album')}\"></script>\n"
         }
     }
 
@@ -148,7 +147,7 @@ class MediaTagLib {
     def image_glossy_resources = {
 		attrs ->
         if ((attrs.override != 'true') && !Boolean.valueOf(attrs.override)) {
-            out << "<script type=\"text/javascript\" src=\"${resource(dir: '/js/glossy', file: 'glossy.js')}\"></script>\n"
+            out << "<script type=\"text/javascript\" src=\"${resource(dir: '/js/glossy', file: 'glossy.js', plugin: 'photo-album')}\"></script>\n"
         }
     }
 }
